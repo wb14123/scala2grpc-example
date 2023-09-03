@@ -1,0 +1,70 @@
+
+syntax = "proto3";
+
+option java_multiple_files = true;
+option java_package = "me.binwang.scala2grpc.example.grpc";
+
+package example;
+
+
+// Define BaseTypeExample
+
+message BaseTypeExample {
+    bool boolean = 1;
+    string str = 2;
+    int32 numberInt = 3;
+    double numberDouble = 4;
+    float numberFloat = 5;
+}
+
+// Define CollectionExample
+
+message CollectionExample {
+    repeated int32 intList = 1;
+
+    message NestedListList {
+        repeated int32 nestedListList = 1;
+    }
+    repeated NestedListList nestedList = 2;
+    optional int32 opt = 3;
+
+    message NestedOptOption {
+        optional int32 nestedOptOption = 1;
+    }
+    optional NestedOptOption nestedOpt = 4;
+
+    message MixedOption {
+        optional int32 mixedOption = 1;
+    }
+    repeated MixedOption mixed = 5;
+}
+
+// Define NestExample
+
+message NestExample {
+    BaseTypeExample base = 1;
+    CollectionExample collection = 2;
+}
+
+// Define me.binwang.scala2grpc.example.ExampleService
+
+message EchoRequest {
+    BaseTypeExample req = 1;
+}
+
+message CombineExamplesRequest {
+    BaseTypeExample base = 1;
+    CollectionExample collection = 2;
+}
+message EchoResponse {
+    BaseTypeExample result = 1;
+}
+
+message CombineExamplesResponse {
+    NestExample result = 1;
+}
+
+service ExampleAPI {
+    rpc Echo (EchoRequest) returns (EchoResponse);
+    rpc CombineExamples (CombineExamplesRequest) returns (CombineExamplesResponse);
+}
