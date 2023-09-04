@@ -16,6 +16,10 @@ grpcGeneratorMainClass := "me.binwang.scala2grpc.example.GenerateGRPC"
 
 libraryDependencies ++= Seq(
   "me.binwang.scala2grpc" %% "generator" % "1.0.0-SNAPSHOT",
+
+  // add logging backend
+  "ch.qos.logback" % "logback-core" % "1.4.11",
+  "ch.qos.logback" % "logback-classic" % "1.4.11",
 )
 
 
