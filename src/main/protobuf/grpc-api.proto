@@ -57,6 +57,19 @@ message EchoStreamRequest {
     int32 repeat = 2;
 }
 
+message ErrorIORequest {
+    BaseTypeExample req = 1;
+}
+
+message ErrorStreamRequest {
+    BaseTypeExample req = 1;
+    int32 repeat = 2;
+}
+
+message MappedErrorRequest {
+    BaseTypeExample req = 1;
+}
+
 message CombineExamplesRequest {
     BaseTypeExample base = 1;
     CollectionExample collection = 2;
@@ -69,6 +82,18 @@ message EchoStreamResponse {
     BaseTypeExample result = 1;
 }
 
+message ErrorIOResponse {
+    BaseTypeExample result = 1;
+}
+
+message ErrorStreamResponse {
+    BaseTypeExample result = 1;
+}
+
+message MappedErrorResponse {
+    BaseTypeExample result = 1;
+}
+
 message CombineExamplesResponse {
     NestExample result = 1;
 }
@@ -76,5 +101,8 @@ message CombineExamplesResponse {
 service ExampleAPI {
     rpc Echo (EchoRequest) returns (EchoResponse);
     rpc EchoStream (EchoStreamRequest) returns (stream EchoStreamResponse);
+    rpc ErrorIO (ErrorIORequest) returns (ErrorIOResponse);
+    rpc ErrorStream (ErrorStreamRequest) returns (stream ErrorStreamResponse);
+    rpc MappedError (MappedErrorRequest) returns (MappedErrorResponse);
     rpc CombineExamples (CombineExamplesRequest) returns (CombineExamplesResponse);
 }
