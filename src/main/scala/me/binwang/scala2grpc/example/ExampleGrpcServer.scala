@@ -6,6 +6,8 @@ import fs2.grpc.syntax.all.fs2GrpcSyntaxServerBuilder
 
 object ExampleGrpcServer extends IOApp {
   override def run(args: List[String]): IO[ExitCode] = {
+
+
     val services = Seq(
       new ExampleService(),
     )

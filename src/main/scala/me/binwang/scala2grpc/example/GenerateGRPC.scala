@@ -1,6 +1,9 @@
 package me.binwang.scala2grpc.example
 
+import cats.effect.IO
 import me.binwang.scala2grpc.GRPCGenerator
+import org.typelevel.log4cats.LoggerFactory
+import org.typelevel.log4cats.slf4j.Slf4jFactory
 
 import scala.reflect.runtime.universe.{Type, typeOf}
 
@@ -17,4 +20,6 @@ object GenerateGRPC extends GRPCGenerator {
   override val serviceClasses: Seq[Type] = Seq(
     typeOf[ExampleService],
   )
+
+  override implicit def loggerFactory: LoggerFactory[IO] = Slf4jFactory.create[IO]
 }

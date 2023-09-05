@@ -52,11 +52,20 @@ message EchoRequest {
     BaseTypeExample req = 1;
 }
 
+message EchoStreamRequest {
+    BaseTypeExample req = 1;
+    int32 repeat = 2;
+}
+
 message CombineExamplesRequest {
     BaseTypeExample base = 1;
     CollectionExample collection = 2;
 }
 message EchoResponse {
+    BaseTypeExample result = 1;
+}
+
+message EchoStreamResponse {
     BaseTypeExample result = 1;
 }
 
@@ -66,5 +75,6 @@ message CombineExamplesResponse {
 
 service ExampleAPI {
     rpc Echo (EchoRequest) returns (EchoResponse);
+    rpc EchoStream (EchoStreamRequest) returns (stream EchoStreamResponse);
     rpc CombineExamples (CombineExamplesRequest) returns (CombineExamplesResponse);
 }
