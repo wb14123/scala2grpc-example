@@ -2,7 +2,7 @@ package me.binwang.scala2grpc.example
 
 import cats.effect.IO
 import io.grpc.{Metadata, Status, StatusRuntimeException}
-import me.binwang.scala2grpc.{DefaultGrpcHook, GRPCGenerator, GrpcHook}
+import me.binwang.scala2grpc.{ChainedGrpcHook, ErrorWrapperHook, GRPCGenerator, GrpcHook, RequestLoggerHook}
 import org.typelevel.log4cats.LoggerFactory
 import org.typelevel.log4cats.slf4j.Slf4jFactory
 
@@ -24,7 +24,7 @@ object GenerateGRPC extends GRPCGenerator {
 
   override implicit def loggerFactory: LoggerFactory[IO] = Slf4jFactory.create[IO]
 
-  override implicit def grpcHook: GrpcHook = new DefaultGrpcHook() {
+  private val customErrorMapper = new ErrorWrapperHook() {
     override def mapError(err: Throwable, metadata: Metadata): StatusRuntimeException = {
       err match {
         case _: AuthError => new StatusRuntimeException(Status.UNAUTHENTICATED.withCause(err), metadata)
@@ -32,5 +32,9 @@ object GenerateGRPC extends GRPCGenerator {
       }
     }
   }
+  override implicit def grpcHook: GrpcHook = new ChainedGrpcHook(Seq(
+    new RequestLoggerHook(),
+    customErrorMapper,
+  ))
 
 }
