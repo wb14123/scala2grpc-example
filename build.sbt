@@ -1,6 +1,6 @@
 ThisBuild / version := "0.1.0-SNAPSHOT"
 
-ThisBuild / scalaVersion := "2.13.10"
+ThisBuild / scalaVersion := "2.13.11"
 
 lazy val root = (project in file("."))
   .settings(
@@ -15,7 +15,7 @@ enablePlugins(Scala2GrpcPlugin)
 grpcGeneratorMainClass := "me.binwang.scala2grpc.example.GenerateGRPC"
 
 libraryDependencies ++= Seq(
-  "me.binwang.scala2grpc" %% "generator" % "1.0.1-SNAPSHOT",
+  "me.binwang.scala2grpc" %% "generator" % "1.0.1",
 
   // add logging backend
   "ch.qos.logback" % "logback-core" % "1.4.11",
