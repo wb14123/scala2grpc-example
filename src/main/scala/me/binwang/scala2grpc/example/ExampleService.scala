@@ -8,7 +8,8 @@ import cats.effect.IO
 class ExampleService {
 
   /**
-   * Echo the request: response the same thing as sent in request
+   * Echo the request.
+   * Response the same thing as sent in request.
    * @param req The request
    * @return The same as `req`
    */

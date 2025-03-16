@@ -7,73 +7,99 @@ option java_package = "me.binwang.scala2grpc.example.grpc";
 package example;
 
 
-// Define BaseTypeExample
-
+// A simple structure. All fields are simple types.
 message BaseTypeExample {
+    // A boolean
     bool boolean = 1;
+
+    // A string
     string str = 2;
+
+    // A int number
     int32 numberInt = 3;
+
+    // A double number
     double numberDouble = 4;
+
+    // A float number
     float numberFloat = 5;
 }
 
-// Define CollectionExample
-
+// A structure that has different collections as its fields
 message CollectionExample {
+    // A list of int
     repeated int32 intList = 1;
 
+    // A list of lists of int
     message NestedListList {
         repeated int32 nestedListList = 1;
     }
     repeated NestedListList nestedList = 2;
+
+    // An option type
     optional int32 opt = 3;
 
+    // An option of option
     message NestedOptOption {
         optional int32 nestedOptOption = 1;
     }
     optional NestedOptOption nestedOpt = 4;
 
+    // A list of option
     message MixedOption {
         optional int32 mixedOption = 1;
     }
     repeated MixedOption mixed = 5;
 }
 
-// Define NestExample
-
+// A type that has both base structure and collection structure as fields
 message NestExample {
+    // Simple structure
     BaseTypeExample base = 1;
+
+    // Collection structure
     CollectionExample collection = 2;
 }
 
-// Define me.binwang.scala2grpc.example.ExampleService
-
 message EchoRequest {
+    // The request
     BaseTypeExample req = 1;
 }
 
 message EchoStreamRequest {
+    // The request
     BaseTypeExample req = 1;
+
+    // How many times to repeat the request
     int32 repeat = 2;
 }
 
 message ErrorIORequest {
+    // Doesn't matter
     BaseTypeExample req = 1;
 }
 
 message ErrorStreamRequest {
+    // Doesn't matter
     BaseTypeExample req = 1;
+
+    // Always raise an error.
     int32 repeat = 2;
 }
 
 message MappedErrorRequest {
+    // Doesn't matter
     BaseTypeExample req = 1;
 }
 
 message CombineExamplesRequest {
+    // A simple structure
     BaseTypeExample base = 1;
+
+    // A more complex structure that has different collections as fields
     CollectionExample collection = 2;
 }
+
 message EchoResponse {
     BaseTypeExample result = 1;
 }
@@ -98,11 +124,23 @@ message CombineExamplesResponse {
     NestExample result = 1;
 }
 
+// An example service
 service ExampleAPI {
+    // Echo the request. Response the same thing as sent in request.
     rpc Echo (EchoRequest) returns (EchoResponse);
+
+    // Echo the request, but repeat the response as a stream
     rpc EchoStream (EchoStreamRequest) returns (stream EchoStreamResponse);
+
+    // Raise an error
     rpc ErrorIO (ErrorIORequest) returns (ErrorIOResponse);
+
+    // Raise an error for a stream API
     rpc ErrorStream (ErrorStreamRequest) returns (stream ErrorStreamResponse);
+
+    // An API endpoint to test if the framework maps the internal error to specific GRPC error code and message
     rpc MappedError (MappedErrorRequest) returns (MappedErrorResponse);
+
+    // A complex API that has nested structure as request
     rpc CombineExamples (CombineExamplesRequest) returns (CombineExamplesResponse);
 }
