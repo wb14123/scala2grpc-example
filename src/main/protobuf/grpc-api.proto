@@ -126,21 +126,36 @@ message CombineExamplesResponse {
 
 // An example service
 service ExampleAPI {
-    // Echo the request. Response the same thing as sent in request.
+    /*
+    Echo the request. Response the same thing as sent in request.
+    Returns The same as req
+    */
     rpc Echo (EchoRequest) returns (EchoResponse);
 
-    // Echo the request, but repeat the response as a stream
+    /*
+    Echo the request, but repeat the response as a stream
+    Returns A stream with req repeated a few times
+    */
     rpc EchoStream (EchoStreamRequest) returns (stream EchoStreamResponse);
 
-    // Raise an error
+    /*
+    Raise an error
+    Returns Always raise an error
+    */
     rpc ErrorIO (ErrorIORequest) returns (ErrorIOResponse);
 
     // Raise an error for a stream API
     rpc ErrorStream (ErrorStreamRequest) returns (stream ErrorStreamResponse);
 
-    // An API endpoint to test if the framework maps the internal error to specific GRPC error code and message
+    /*
+    An API endpoint to test if the framework maps the internal error to specific GRPC error code and message
+    Returns Always raise an auth error
+    */
     rpc MappedError (MappedErrorRequest) returns (MappedErrorResponse);
 
-    // A complex API that has nested structure as request
+    /*
+    A complex API that has nested structure as request
+    Returns Combine base and collection
+    */
     rpc CombineExamples (CombineExamplesRequest) returns (CombineExamplesResponse);
 }
