@@ -2,6 +2,7 @@ package me.binwang.scala2grpc.example
 
 import cats.effect.IO
 import io.grpc.{Metadata, Status, StatusRuntimeException}
+import me.binwang.scala2grpc.example.EnumExample.EnumExample
 import me.binwang.scala2grpc.{ChainedGrpcHook, ErrorWrapperHook, GRPCGenerator, GrpcHook, RequestLoggerHook}
 import org.typelevel.log4cats.LoggerFactory
 import org.typelevel.log4cats.slf4j.Slf4jFactory
@@ -14,6 +15,7 @@ object GenerateGRPC extends GRPCGenerator {
 
   override val modelClasses: Seq[Type] = Seq(
     typeOf[BaseTypeExample],
+    typeOf[EnumExample],
     typeOf[CollectionExample],
     typeOf[NestExample],
   )

@@ -17,6 +17,20 @@ case class BaseTypeExample(
   numberFloat: Float,
 )
 
+
+/**
+ * An example of using enum
+ */
+object EnumExample extends Enumeration {
+  type EnumExample = Value
+  val
+  RED,
+  BLUE,
+  GREEN
+  = Value
+}
+
+
 /**
  * A structure that has different collections as its fields
  * @param intList A list of int
@@ -31,6 +45,7 @@ case class CollectionExample(
   opt: Option[Int],
   nestedOpt: Option[Option[Int]],
   mixed: Seq[Option[Int]],
+  enum: EnumExample.EnumExample,
 )
 
 /**

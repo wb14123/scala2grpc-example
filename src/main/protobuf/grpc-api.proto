@@ -25,6 +25,13 @@ message BaseTypeExample {
     float numberFloat = 5;
 }
 
+// An example of using enum
+enum EnumExample {
+    RED = 0;
+    BLUE = 1;
+    GREEN = 2;
+}
+
 // A structure that has different collections as its fields
 message CollectionExample {
     // A list of int
@@ -50,6 +57,8 @@ message CollectionExample {
         optional int32 mixedOption = 1;
     }
     repeated MixedOption mixed = 5;
+
+    EnumExample enum = 6;
 }
 
 // A type that has both base structure and collection structure as fields
