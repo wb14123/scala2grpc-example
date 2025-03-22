@@ -42,7 +42,9 @@ class ExampleService {
     fs2.Stream.emit(req).repeatN(repeat) ++ fs2.Stream.raiseError[IO](new Exception("Test exception"))
 
   /**
-   * An API endpoint to test if the framework maps the internal error to specific GRPC error code and message
+   * An API endpoint to test if the framework maps the internal error to specific GRPC error code and message.
+   * Just add more comments to make it exceed 80 characters to test generated GRPC comment line break.
+   *
    * @param req Doesn't matter
    * @return Always raise an auth error
    */

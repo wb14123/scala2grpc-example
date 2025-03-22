@@ -157,7 +157,9 @@ service ExampleAPI {
     rpc ErrorStream (ErrorStreamRequest) returns (stream ErrorStreamResponse);
 
     /*
-    An API endpoint to test if the framework maps the internal error to specific GRPC error code and message
+    An API endpoint to test if the framework maps the internal error to
+    specific GRPC error code and message. Just add more comments to make it
+    exceed 80 characters to test generated GRPC comment line break.
     Returns Always raise an auth error
     */
     rpc MappedError (MappedErrorRequest) returns (MappedErrorResponse);
