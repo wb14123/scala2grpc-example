@@ -27,9 +27,15 @@ message BaseTypeExample {
 
 // An example of using enum
 enum EnumExample {
+    // Red color
     RED = 0;
+
+    // Blue color
     BLUE = 1;
+
+    // Green color
     GREEN = 2;
+
 }
 
 // A structure that has different collections as its fields

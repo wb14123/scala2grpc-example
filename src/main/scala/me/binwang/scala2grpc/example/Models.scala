@@ -23,11 +23,21 @@ case class BaseTypeExample(
  */
 object EnumExample extends Enumeration {
   type EnumExample = Value
-  val
-  RED,
-  BLUE,
-  GREEN
-  = Value
+
+  /**
+   * Red color
+   */
+  val RED: EnumExample = Value
+
+  /**
+   * Blue color
+   */
+  val BLUE: EnumExample = Value
+
+  /**
+   * Green color
+   */
+  val GREEN: EnumExample = Value
 }
 
 
