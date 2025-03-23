@@ -35,7 +35,6 @@ enum EnumExample {
 
     // Green color
     GREEN = 2;
-
 }
 
 // A structure that has different collections as its fields
