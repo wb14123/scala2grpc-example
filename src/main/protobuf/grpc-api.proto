@@ -1,6 +1,7 @@
 
 syntax = "proto3";
 
+
 option java_multiple_files = true;
 option java_package = "me.binwang.scala2grpc.example.grpc";
 
@@ -23,6 +24,9 @@ message BaseTypeExample {
 
     // A float number
     float numberFloat = 5;
+
+    // A byte array
+    bytes byteArray = 6;
 }
 
 // An example of using enum

@@ -8,6 +8,7 @@ package me.binwang.scala2grpc.example
  * @param numberInt A int number
  * @param numberDouble A double number
  * @param numberFloat A float number
+ * @param byteArray A byte array
  */
 case class BaseTypeExample(
   boolean: Boolean,
@@ -15,6 +16,7 @@ case class BaseTypeExample(
   numberInt : Int,
   numberDouble: Double,
   numberFloat: Float,
+  byteArray: Array[Byte],
 )
 
 
